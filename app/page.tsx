@@ -13,19 +13,19 @@ export default function Home() {
     const [iconHovered, setIconHovered] = useState(false);
 
     return (
-        <div className="p-[50px] flex flex-col items-start gap-[50px]">
-            <div className="w-full min-h-[500px] flex flex-col justify-center items-center gap-[30px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_70%)]">
+        <div className="p-[50px] md:p-0 md:px-[250px] md:py-[50px] flex flex-col items-start gap-[50px]">
+            <div className="w-full min-h-[500px] flex flex-col justify-center items-center gap-[30px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_40%)]">
                 <div className="my-5 flex justify-center gap-10">
                     <div className="h-[200px] flex flex-col justify-center items-center overflow-hidden">
-                        <div className="flex flex-col justify-center items-start">
+                        <div className="flex flex-col md:flex-row justify-center items-center gap-0 md:gap-2.5">
                             <Text
                                 text="Hi,"
-                                className="tracking-tighter text-[60px]"
+                                className="tracking-tighter text-[50px] md:text-[60px] leading-12 md:leading-24"
                             />
 
                             <Text
                                 text="I'm Callam!"
-                                className="tracking-tighter text-[60px] leading-5"
+                                className="tracking-tighter text-[50px] text-center md:text-start md:text-[60px] leading-10 md:leading-5"
                             />
                         </div>
                     </div>
@@ -64,7 +64,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="flex gap-5">
+                <div className="flex flex-col md:flex-row gap-5">
                     <button
                         className="py-[5px] px-[20px] text-black bg-white hover:bg-white/50 rounded-[10px] transition-all duration-200"
                         onClick={() => {
@@ -88,8 +88,8 @@ export default function Home() {
                     </button>
                 </div>
 
-                <p className="text-xs text-white/50">
-                    Don&apos;t want to scroll? Use the navigation buttons above!
+                <p className="text-xs text-white/50 text-center md:text-start">
+                    Dont want to scroll? Use the navigation buttons above!
                 </p>
             </div>
 
@@ -164,7 +164,7 @@ export default function Home() {
                     />
                 </div>
 
-                <div className="my-10 w-full grid grid-cols-[1fr_2fr] gap-4">
+                <div className="my-10 w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4">
                     <div className='w-full p-[20px] flex flex-col gap-5 border rounded-[10px] hover:bg-white hover:text-black transition-all duration-400 ease-out'>
                         <div className='flex flex-col items-start'>
                             <Text 
