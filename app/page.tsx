@@ -89,7 +89,7 @@ export default function Home() {
                 </div>
 
                 <p className="text-xs text-white/50">
-                    Don't want to scroll? Use the navigation buttons above!
+                    Don&apos;t want to scroll? Use the navigation buttons above!
                 </p>
             </div>
 
