@@ -12,6 +12,8 @@ export default function Home() {
     const aboutRef = useRef<HTMLDivElement>(null);
     const experienceRef = useRef<HTMLDivElement>(null);
 
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     const [iconHovered, setIconHovered] = useState(false);
     const [iconClicked, setIconClicked] = useState(false);
     const [isVisible, setIsVisible] = useState({
@@ -188,7 +190,11 @@ export default function Home() {
                                     : 'opacity-0 translate-y-10',
                             )}
                         >
-                            <Highlighter action="highlight" color='#00000033'>
+                            <Highlighter action="highlight" color={
+                                isDarkMode
+                                    ? '#00000033'
+                                    : '#FFFFFF33'
+                            }>
                                 <Text
                                     text="Description"
                                     size="lg"
@@ -212,7 +218,11 @@ export default function Home() {
                                     : 'opacity-0 translate-y-10',
                             )}
                         >
-                            <Highlighter action="highlight" color='#00000033'>
+                            <Highlighter action="highlight" color={
+                                isDarkMode
+                                    ? '#00000033'
+                                    : '#FFFFFF33'
+                            }>
                                 <Text
                                     text="Education"
                                     size="lg"
@@ -236,7 +246,11 @@ export default function Home() {
                                     : 'opacity-0 translate-y-10',
                             )}
                         >
-                            <Highlighter action='highlight' color='#00000033'>
+                            <Highlighter action='highlight' color={
+                                isDarkMode
+                                    ? '#00000033'
+                                    : '#FFFFFF33'
+                            }>
                             <Text
                                 text="Hobbies"
                                 size="lg"
