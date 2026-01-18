@@ -267,7 +267,7 @@ export default function Home() {
                 </div>
 
                 <div className="my-10 w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4">
-                    <Card className="w-full p-[20px] flex flex-col gap-5 border rounded-[10px] hover:bg-white hover:text-black transition-all duration-400 ease-out">
+                    <Card className="w-full p-[20px] flex flex-col gap-5 border border-black dark:border-white rounded-[10px] hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-400 ease-out">
                         <div className="flex flex-col items-start">
                             <Text
                                 text="Role:"
