@@ -134,7 +134,7 @@ export default function Home() {
                         height={20}
                         width={20}
                         className={clsx(
-                            'invert',
+                            'dark:invert',
                             iconHovered ? '' : 'animate-bounce',
                         )}
                     />
