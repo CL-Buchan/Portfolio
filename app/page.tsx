@@ -35,7 +35,7 @@ export default function Home() {
                             src={Me}
                             alt=""
                             fill
-                            className="object-cover rounded-[5px] shadow-[0_0_20px_rgba(255,255,255,0.15),0_0_40px_rgba(255,255,255,0.08)]"
+                            className="object-cover rounded-[5px] shadow-[0_0_20px_rgba(0,0,0,0.15),0_0_40px_rgba(0,0,0,0.08)] dark:shadow-[0_0_20px_rgba(255,255,255,0.15),0_0_40px_rgba(255,255,255,0.08)]"
                         />
                     </div>
                 </div>
@@ -66,7 +66,7 @@ export default function Home() {
 
                 <div className="flex flex-col md:flex-row gap-5">
                     <button
-                        className="py-[5px] px-[20px] text-black bg-white hover:bg-white/50 rounded-[10px] transition-all duration-200"
+                        className="py-[5px] px-[20px] text-white dark:text-black bg-black dark:bg-white hover:bg-white/50 rounded-[10px] transition-all duration-200"
                         onClick={() => {
                             aboutRef.current?.scrollIntoView({
                                 behavior: 'smooth',
@@ -97,7 +97,7 @@ export default function Home() {
                 ref={aboutRef}
                 className="w-full flex flex-col gap-10"
             >
-                <div className="w-full px-2.5 bg-white text-black rounded-[5px]">
+                <div className="w-full px-2.5 bg-black dark:bg-white text-white dark:text-black rounded-[5px]">
                     <Text
                         text="About Me"
                         size="xl"
@@ -156,7 +156,7 @@ export default function Home() {
                 ref={experienceRef}
                 className="w-full flex flex-col gap-10"
             >
-                <div className="w-full px-2.5 bg-white text-black rounded-[5px]">
+                <div className="w-full px-2.5 bg-black dark:bg-white text-white dark:text-black rounded-[5px]">
                     <Text
                         text="Experience"
                         size="xl"
@@ -191,29 +191,29 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className='w-full p-[20px] bg-white rounded-[10px] flex flex-col'>
+                    <div className='w-full p-[20px bg-black dark:bg-white rounded-[10px] flex flex-col'>
                         <Text 
                             text='Responsibilities'
-                            className='tracking-tight text-black text-[20px]'
+                            className='tracking-tight text-white dark:text-black text-[20px]'
                         />
 
                         <ul className='px-[20px] mt-4 flex flex-col gap-3'>
-                            <li className='list-disc text-black'>
+                            <li className='list-disc text-white dark:text-black'>
                                 <Text
                                     text='Create and manage front end pages'
-                                    className='text-black'
+                                    className='text-white dark:text-black'
                                 />
                             </li>
-                            <li className='list-disc text-black'>
+                            <li className='list-disc text-white dark:text-black'>
                                 <Text
                                     text='Front end pages'
-                                    className='text-black'
+                                    className='text-white dark:text-black'
                                 />
                             </li>
-                            <li className='list-disc text-black'>
+                            <li className='list-disc text-white dark:text-black'>
                                 <Text
                                     text='Front end pages'
-                                    className='text-black'
+                                    className='text-white dark:text-black'
                                 />
                             </li>
                         </ul>
