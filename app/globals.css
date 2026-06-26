@@ -129,5 +129,11 @@
 }
 
 html {
-    background-color: var(--color-background);
+    background-color: var(--background);
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: oklch(13.441% 0.00002 271.152);
+    }
 }
