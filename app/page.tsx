@@ -12,7 +12,6 @@ import ProfilePicture from '@/public/E4DF1432-FAD7-4780-B65B-7EE5021C5572_1_105_
 import Pin from '@/public/pin-icon.png';
 import LinkedinLogo from '@/public/linkedin.png';
 import GithubLogo from '@/public/github.png';
-import Card from '@/app/ui/Card';
 import { LucideProps, MailIcon } from 'lucide-react';
 import { experiences } from './data/experiences';
 import { universityEducation } from './data/university';
@@ -51,7 +50,7 @@ export default function Home() {
                     // threshold: 0.1 means trigger when 10% of the element is visible
                     threshold: 0.1,
                     // rootMargin: '0px' - Margin around the viewport root
-                    rootMargin: '0px',
+                    rootMargin: '-100px',
                 },
             );
 
@@ -213,9 +212,17 @@ export default function Home() {
                                     index,
                                 ) => {
                                     return (
-                                        <Card
+                                        <div
                                             key={index}
-                                            className="w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl"
+                                            style={{
+                                                transitionDelay: `${index * 250}ms`,
+                                            }}
+                                            className={clsx(
+                                                'w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
+                                                isVisible.experience
+                                                    ? `opacity-100 translate-y-0`
+                                                    : 'opacity-0 translate-y-4',
+                                            )}
                                         >
                                             <div className="w-full flex flex-col gap-5">
                                                 <div className="flex justify-between items-start">
@@ -247,7 +254,7 @@ export default function Home() {
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </Card>
+                                        </div>
                                     );
                                 },
                             )}
@@ -275,9 +282,17 @@ export default function Home() {
                                     index,
                                 ) => {
                                     return (
-                                        <Card
+                                        <div
                                             key={index}
-                                            className="w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl"
+                                            style={{
+                                                transitionDelay: `${index * 250}ms`,
+                                            }}
+                                            className={clsx(
+                                                'w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
+                                                isVisible.education
+                                                    ? `opacity-100 translate-y-0`
+                                                    : 'opacity-0 translate-y-4',
+                                            )}
                                         >
                                             <div className="w-full flex flex-col gap-5">
                                                 <div className="flex justify-between items-start">
@@ -301,7 +316,7 @@ export default function Home() {
                                                     </p>
                                                 </div>
                                             </div>
-                                        </Card>
+                                        </div>
                                     );
                                 },
                             )}
