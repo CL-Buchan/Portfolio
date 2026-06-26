@@ -38,6 +38,7 @@ export default function Home() {
 
             if (!element) return;
 
+            const rootMargin = window.innerWidth < 768 ? '0px' : '-100px';
             const observer = new IntersectionObserver(
                 ([entry]) => {
                     if (entry.isIntersecting) {
@@ -50,7 +51,7 @@ export default function Home() {
                     // threshold: 0.1 means trigger when 10% of the element is visible
                     threshold: 0.1,
                     // rootMargin: '0px' - Margin around the viewport root
-                    rootMargin: '-100px',
+                    rootMargin: rootMargin,
                 },
             );
 
