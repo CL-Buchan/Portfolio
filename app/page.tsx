@@ -97,31 +97,34 @@ export default function Home() {
     return (
         <div className="relative p-12.5 md:p-0 md:px-62.5 md:py-16 flex flex-col items-start gap-12.5">
             <main className="w-full flex flex-col justify-center items-center gap-7.5 z-10">
-                <section className="min-w-200 my-5 flex flex-col justify-center items-center gap-20">
-                    <div className="w-full flex flex-row justify-between items-center gap-10">
-                        <div className="flex flex-col justify-start items-start gap-5 overflow-hidden">
-                            <div className="flex flex-col gap-2.5">
-                                <h1 className="font-bold tracking-tight text-4xl">
+                <section className="w-full min-w-0 md:min-w-200 my-5 flex flex-col justify-center items-center gap-20">
+                    <div className="w-full flex flex-col md:flex-row md:justify-between items-start md:items-center gap-10">
+                        <div className="w-full flex flex-col justify-start items-center md:items-start gap-5 overflow-hidden">
+                            <div className="flex flex-col items-center md:items-start gap-2.5">
+                                <h1 className="font-bold tracking-tight text-3xl md:text-4xl">
                                     Callam Buchan
                                 </h1>
 
-                                <p>
+                                <p className="text-sm md:text-base text-center md:text-start">
                                     Software Engineer. <br />
                                     <i>Learning through building.</i>
                                 </p>
+
                                 <div className="flex items-center gap-2.5">
                                     <Image
                                         src={Pin}
                                         alt="Pin icon"
                                         width={15}
                                         height={15}
-                                        className="dark:invert"
+                                        className="hidden md:block dark:invert"
                                     />
-                                    <p>Gold Coast, Australia</p>
+                                    <p className="text-sm md:text-base">
+                                        Gold Coast, Australia
+                                    </p>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-5">
+                            <div className="flex items-center gap-2.5 md:gap-5">
                                 {socialButtons &&
                                     socialButtons.map(
                                         (
@@ -180,7 +183,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="relative w-37.5 h-50 aspect-2/1">
+                        <div className="relative mx-auto md:mx-0 w-37.5 h-50 aspect-2/1">
                             <Image
                                 src={ProfilePicture}
                                 alt="Personal picture"
@@ -195,7 +198,7 @@ export default function Home() {
                         ref={experienceRef}
                         className="w-full flex flex-col justify-start items-start gap-5"
                     >
-                        <h2 className="font-semibold tracking-tight text-3xl">
+                        <h2 className="font-semibold tracking-tight text-2xl md:text-3xl">
                             Relevant Experience
                         </h2>
 
@@ -218,32 +221,34 @@ export default function Home() {
                                                 transitionDelay: `${index * 250}ms`,
                                             }}
                                             className={clsx(
-                                                'w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
+                                                'w-full p-5 md:p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
                                                 isVisible.experience
                                                     ? `opacity-100 translate-y-0`
                                                     : 'opacity-0 translate-y-4',
                                             )}
                                         >
                                             <div className="w-full flex flex-col gap-5">
-                                                <div className="flex justify-between items-start">
+                                                <div className="flex flex-col md:flex-row justify-between items-start">
                                                     <div className="flex flex-col">
-                                                        <h3 className="text-2xl font-semibold tracking-tight">
+                                                        <h3 className="text-xl md:text-2xl font-semibold tracking-tight">
                                                             {name}
                                                         </h3>
-                                                        <p className="text-muted-foreground">
+                                                        <p className="text-sm md:text-base text-muted-foreground">
                                                             {roleName}
                                                         </p>
                                                     </div>
 
-                                                    <p className="text-muted-foreground">
+                                                    <p className="mt-2.5 md:mt-0 text-sm md:text-base text-muted-foreground">
                                                         {dateFrom} - {dateTo}
                                                     </p>
                                                 </div>
 
                                                 <div>
-                                                    <p>{content}</p>
+                                                    <p className="text-sm md:text-base">
+                                                        {content}
+                                                    </p>
 
-                                                    <ul>
+                                                    <ul className="list-inside list-disc space-y-3 md:space-y-0">
                                                         {responsibilities.map(
                                                             (text, index) => (
                                                                 <li key={index}>
@@ -265,7 +270,7 @@ export default function Home() {
                         ref={educationRef}
                         className="w-full flex flex-col justify-start items-start gap-5"
                     >
-                        <h2 className="font-semibold tracking-tight text-3xl">
+                        <h2 className="font-semibold tracking-tight text-2xl md:text-3xl">
                             Education
                         </h2>
 
@@ -288,30 +293,30 @@ export default function Home() {
                                                 transitionDelay: `${index * 250}ms`,
                                             }}
                                             className={clsx(
-                                                'w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
+                                                'w-full p-5 md:p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl transition-all duration-500 ease-in-out',
                                                 isVisible.education
                                                     ? `opacity-100 translate-y-0`
                                                     : 'opacity-0 translate-y-4',
                                             )}
                                         >
                                             <div className="w-full flex flex-col gap-5">
-                                                <div className="flex justify-between items-start">
+                                                <div className="flex flex-col md:flex-row justify-between items-start">
                                                     <div className="flex flex-col">
-                                                        <h3 className="text-2xl font-semibold tracking-tight">
+                                                        <h3 className="text-xl md:text-2xl font-semibold tracking-tight">
                                                             {degree}
                                                         </h3>
                                                         {major && (
-                                                            <p className="text-xl text-foreground">
+                                                            <p className="text-base md:text-xl text-foreground">
                                                                 Majoring in{' '}
                                                                 {major}
                                                             </p>
                                                         )}
-                                                        <p className="text-muted-foreground">
+                                                        <p className="text-sm: md:text-base text-muted-foreground">
                                                             @ {university}
                                                         </p>
                                                     </div>
 
-                                                    <p className="text-muted-foreground">
+                                                    <p className="mt-2.5 md:mt-0 text-sm: md:text-base text-muted-foreground">
                                                         {dateFrom} - {dateTo}
                                                     </p>
                                                 </div>
