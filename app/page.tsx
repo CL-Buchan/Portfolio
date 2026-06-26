@@ -96,7 +96,7 @@ export default function Home() {
     ];
 
     return (
-        <div className="relative min-h-dvh p-12.5 md:p-0 md:px-62.5 md:py-16 flex flex-col items-start gap-12.5">
+        <div className="relative min-h-screen p-12.5 md:p-0 md:px-62.5 md:py-16 flex flex-col items-start gap-12.5">
             <main className="w-full flex flex-col justify-center items-center gap-7.5 z-10">
                 <section className="w-full min-w-0 md:min-w-200 my-5 flex flex-col justify-center items-center gap-20">
                     <div className="w-full flex flex-col md:flex-row md:justify-between items-start md:items-center gap-10">
@@ -332,7 +332,7 @@ export default function Home() {
             </main>
 
             {/* Bottom radial glow */}
-            <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.17)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3)_0%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.07)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.07)_0%,transparent_50%)]" />
+            <div className="fixed inset-screen z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.17)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3)_0%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.07)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.07)_0%,transparent_50%)]" />
         </div>
     );
 }

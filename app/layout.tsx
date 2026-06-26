@@ -31,7 +31,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth min-h-dvh bg-background`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth min-h-screen bg-background`}
             >
                 {children}
             </body>
