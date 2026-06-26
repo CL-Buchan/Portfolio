@@ -1,33 +1,33 @@
 'use client';
 
-import Text from '@/components/ui/Text';
-import Image from 'next/image';
-import Me from '@/public/E4DF1432-FAD7-4780-B65B-7EE5021C5572_1_105_c.jpeg';
-import { useRef, useState, useEffect } from 'react';
+import Image, { StaticImageData } from 'next/image';
+import {
+    useRef,
+    useState,
+    useEffect,
+    ForwardRefExoticComponent,
+    RefAttributes,
+} from 'react';
+import ProfilePicture from '@/public/E4DF1432-FAD7-4780-B65B-7EE5021C5572_1_105_c.jpeg';
+import Pin from '@/public/pin-icon.png';
+import LinkedinLogo from '@/public/linkedin.png';
+import GithubLogo from '@/public/github.png';
+import Card from '@/app/ui/Card';
+import { LucideProps, MailIcon } from 'lucide-react';
+import { experiences } from './data/experiences';
+import { universityEducation } from './data/university';
 import clsx from 'clsx';
-import Card from '@/components/ui/Card';
-import { Highlighter } from '@/components/ui/highlighter';
 
 export default function Home() {
-    const aboutRef = useRef<HTMLDivElement>(null);
-    const experienceRef = useRef<HTMLDivElement>(null);
-
-    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const [iconHovered, setIconHovered] = useState(false);
-    const [iconClicked, setIconClicked] = useState(false);
     const [isVisible, setIsVisible] = useState({
-        description: false,
+        experience: false,
         education: false,
-        hobbies: false,
     });
 
-    const descriptionRef = useRef<HTMLDivElement>(null);
+    const experienceRef = useRef<HTMLDivElement>(null);
     const educationRef = useRef<HTMLDivElement>(null);
-    const hobbiesRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Array to store all IntersectionObserver instances
         const observers: IntersectionObserver[] = [];
 
         // Helper function to set up an observer for a single element
@@ -39,7 +39,6 @@ export default function Home() {
 
             if (!element) return;
 
-            // This API watches for when an element intersects (overlaps) with the viewport
             const observer = new IntersectionObserver(
                 ([entry]) => {
                     if (entry.isIntersecting) {
@@ -56,286 +55,263 @@ export default function Home() {
                 },
             );
 
-            // Start observing the element
             observer.observe(element);
-            // Store the observer in our array so we can clean it up later
             observers.push(observer);
         };
 
         // Set up observers for each section we want to animate
-        // Each call creates an observer and starts watching that element
-        observeElement(descriptionRef, 'description');
+        observeElement(experienceRef, 'experience');
         observeElement(educationRef, 'education');
-        observeElement(hobbiesRef, 'hobbies');
 
-        // Cleanup function - runs when component unmounts or dependencies change
-        // This prevents memory leaks by disconnecting all observers
+        // Cleanup function - runs when component unmounts or dependencies change & prevents memory leaks by disconnecting all observers
         return () => {
-            // Loop through all observers and disconnect them
-            // disconnect() stops all observation and cleans up resources
             observers.forEach((observer) => observer.disconnect());
         };
     }, []);
 
-    return (
-        <div className="p-[50px] md:p-0 md:px-[250px] md:py-[50px] flex flex-col items-start gap-[50px]">
-            <div className="w-full min-h-[500px] flex flex-col justify-center items-center gap-[30px] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.2)_0%,transparent_40%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0%,transparent_40%)]">
-                <div className="my-5 flex justify-center gap-10">
-                    <div className="h-[200px] flex flex-col justify-center items-center overflow-hidden">
-                        <div className="flex flex-col md:flex-row justify-center items-center gap-0 md:gap-2.5">
-                            <Text
-                                text="Hi,"
-                                className="tracking-tighter text-[50px] md:text-[60px] leading-12 md:leading-24"
-                            />
+    const socialButtons: {
+        src:
+            | string
+            | StaticImageData
+            | ForwardRefExoticComponent<
+                  Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+              >;
+        alt?: string;
+        height?: number;
+        width?: number;
+    }[] = [
+        { src: MailIcon },
+        {
+            src: LinkedinLogo,
+            alt: 'Linkedin logo',
+            height: 24,
+            width: 24,
+        },
+        {
+            src: GithubLogo,
+            alt: 'Github logo',
+            height: 24,
+            width: 24,
+        },
+    ];
 
-                            <Text
-                                text="I'm Callam!"
-                                className="tracking-tighter text-[50px] text-center md:text-start md:text-[60px] leading-10 md:leading-5"
+    return (
+        <div className="relative p-12.5 md:p-0 md:px-62.5 md:py-16 flex flex-col items-start gap-12.5">
+            <main className="w-full flex flex-col justify-center items-center gap-7.5 z-10">
+                <section className="min-w-200 my-5 flex flex-col justify-center items-center gap-20">
+                    <div className="w-full flex flex-row justify-between items-center gap-10">
+                        <div className="flex flex-col justify-start items-start gap-5 overflow-hidden">
+                            <div className="flex flex-col gap-2.5">
+                                <h1 className="font-bold tracking-tight text-4xl">
+                                    Callam Buchan
+                                </h1>
+
+                                <p>
+                                    Software Engineer. <br />
+                                    <i>Learning through building.</i>
+                                </p>
+                                <div className="flex items-center gap-2.5">
+                                    <Image
+                                        src={Pin}
+                                        alt="Pin icon"
+                                        width={15}
+                                        height={15}
+                                        className="dark:invert"
+                                    />
+                                    <p>Gold Coast, Australia</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-5">
+                                {socialButtons &&
+                                    socialButtons.map(
+                                        (
+                                            { src, alt, height, width },
+                                            index,
+                                        ) => {
+                                            return (
+                                                <a
+                                                    key={index}
+                                                    href={
+                                                        typeof src !==
+                                                            'string' &&
+                                                        'src' in src
+                                                            ? alt?.includes(
+                                                                  'Linkedin',
+                                                              )
+                                                                ? 'https://www.linkedin.com/in/callam-buchan-810974278/'
+                                                                : 'https://github.com/CL-Buchan'
+                                                            : 'mailto:clathanbuchan@gmail.com'
+                                                    }
+                                                    className="h-10 w-10 flex justify-center items-center border border-black/20 dark:border-white/20 rounded-[5px] hover:bg-[#d0d0d0] dark:hover:bg-[#333333] transition-colors duration-200 ease-in-out"
+                                                >
+                                                    {typeof src !== 'string' &&
+                                                    'src' in src ? (
+                                                        <Image
+                                                            src={src}
+                                                            alt={alt ?? ''}
+                                                            height={height!}
+                                                            width={width!}
+                                                            className={clsx(
+                                                                'opacity-50',
+                                                                alt?.includes(
+                                                                    'Linkedin',
+                                                                )
+                                                                    ? 'invert dark:invert-0'
+                                                                    : 'dark:invert',
+                                                            )}
+                                                        />
+                                                    ) : (
+                                                        (() => {
+                                                            const Icon =
+                                                                src as React.ElementType;
+                                                            return (
+                                                                <Icon
+                                                                    opacity={
+                                                                        0.5
+                                                                    }
+                                                                />
+                                                            );
+                                                        })()
+                                                    )}
+                                                </a>
+                                            );
+                                        },
+                                    )}
+                            </div>
+                        </div>
+
+                        <div className="relative w-37.5 h-50 aspect-2/1">
+                            <Image
+                                src={ProfilePicture}
+                                alt="Personal picture"
+                                fill
+                                className="object-cover rounded-[5px] shadow-[0_0_20px_rgba(0,0,0,0.35),0_0_40px_rgba(0,0,0,0.28)] dark:shadow-[0_0_20px_rgba(255,255,255,0.35),0_0_40px_rgba(255,255,255,0.28)]"
                             />
                         </div>
                     </div>
 
-                    <div className="relative w-[150px] h-[200px] aspect-2/1">
-                        <Image
-                            src={Me}
-                            alt=""
-                            fill
-                            className="object-cover rounded-[5px] shadow-[0_0_20px_rgba(0,0,0,0.15),0_0_40px_rgba(0,0,0,0.08)] dark:shadow-[0_0_20px_rgba(255,255,255,0.15),0_0_40px_rgba(255,255,255,0.08)]"
-                        />
-                    </div>
-                </div>
+                    {/* Relevant work experience */}
+                    <div
+                        ref={experienceRef}
+                        className="w-full flex flex-col justify-start items-start gap-5"
+                    >
+                        <h2 className="font-semibold tracking-tight text-3xl">
+                            Relevant Experience
+                        </h2>
 
-                <div
-                    className="flex items-center gap-5 group"
-                    onMouseOver={() => setIconHovered(true)}
-                    onMouseOut={() => setIconHovered(false)}
-                    onClick={() => setIconClicked(!iconClicked)}
-                >
-                    <Image
-                        src={'/pin-icon.png'}
-                        alt="Pin Icon"
-                        height={20}
-                        width={20}
-                        className={clsx(
-                            'dark:invert',
-                            iconHovered ? '' : 'animate-bounce',
-                        )}
-                    />
+                        <div className="w-full flex flex-col justify-center items-start gap-5">
+                            {experiences.map(
+                                (
+                                    {
+                                        name,
+                                        content,
+                                        dateFrom,
+                                        dateTo,
+                                        role: { roleName, responsibilities },
+                                    },
+                                    index,
+                                ) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            className="w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl"
+                                        >
+                                            <div className="w-full flex flex-col gap-5">
+                                                <div className="flex justify-between items-start">
+                                                    <div className="flex flex-col">
+                                                        <h3 className="text-2xl font-semibold tracking-tight">
+                                                            {name}
+                                                        </h3>
+                                                        <p className="text-muted-foreground">
+                                                            {roleName}
+                                                        </p>
+                                                    </div>
+
+                                                    <p className="text-muted-foreground">
+                                                        {dateFrom} - {dateTo}
+                                                    </p>
+                                                </div>
+
+                                                <div>
+                                                    <p>{content}</p>
+
+                                                    <ul>
+                                                        {responsibilities.map(
+                                                            (text, index) => (
+                                                                <li key={index}>
+                                                                    {text}
+                                                                </li>
+                                                            ),
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    );
+                                },
+                            )}
+                        </div>
+                    </div>
 
                     <div
-                        className={clsx(
-                            'max-w-0 overflow-hidden transition-all duration-700 ease-out group-hover:max-w-[200px]',
-                            iconClicked ? 'max-w-[200px]' : 'max-w-0',
-                        )}
+                        ref={educationRef}
+                        className="w-full flex flex-col justify-start items-start gap-5"
                     >
-                        <Text
-                            text="Gold Coast, Australia"
-                            className={clsx(
-                                'opacity-0 whitespace-nowrap transition-all duration-700 ease-out group-hover:opacity-100 tracking-tight text-black dark:text-white',
-                                iconClicked ? 'opacity-100' : 'opacity-0',
+                        <h2 className="font-semibold tracking-tight text-3xl">
+                            Education
+                        </h2>
+
+                        <div className="w-full flex flex-col justify-center items-start gap-5">
+                            {universityEducation.map(
+                                (
+                                    {
+                                        degree,
+                                        major,
+                                        university,
+                                        dateFrom,
+                                        dateTo,
+                                    },
+                                    index,
+                                ) => {
+                                    return (
+                                        <Card
+                                            key={index}
+                                            className="w-full p-10 border dark:border-white/20 bg-[#333333]/5 dark:bg-white/5 rounded-2xl backdrop-blur-3xl"
+                                        >
+                                            <div className="w-full flex flex-col gap-5">
+                                                <div className="flex justify-between items-start">
+                                                    <div className="flex flex-col">
+                                                        <h3 className="text-2xl font-semibold tracking-tight">
+                                                            {degree}
+                                                        </h3>
+                                                        {major && (
+                                                            <p className="text-xl text-foreground">
+                                                                Majoring in{' '}
+                                                                {major}
+                                                            </p>
+                                                        )}
+                                                        <p className="text-muted-foreground">
+                                                            @ {university}
+                                                        </p>
+                                                    </div>
+
+                                                    <p className="text-muted-foreground">
+                                                        {dateFrom} - {dateTo}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Card>
+                                    );
+                                },
                             )}
-                        />
-                    </div>
-                </div>
-
-                <div className="mt-10 flex flex-col md:flex-row gap-5">
-                    <button
-                        className="py-[5px] px-[20px] text-white dark:text-black bg-black dark:bg-white hover:bg-white/50 rounded-[10px] transition-all duration-200"
-                        onClick={() => {
-                            aboutRef.current?.scrollIntoView({
-                                behavior: 'smooth',
-                            });
-                        }}
-                    >
-                        About Me
-                    </button>
-
-                    <button
-                        className="py-[5px] px-[20px] border border-black dark:border-white hover:bg-black/50 dark:hover:border-white/50 rounded-[10px] transition-all duration-200"
-                        onClick={() => {
-                            experienceRef.current?.scrollIntoView({
-                                behavior: 'smooth',
-                            });
-                        }}
-                    >
-                        Experience
-                    </button>
-                </div>
-
-                <p className="text-xs text-white/50 text-center md:text-start">
-                    Dont want to scroll? Use the navigation buttons above!
-                </p>
-            </div>
-
-            <div
-                ref={aboutRef}
-                className="w-full flex flex-col gap-10"
-            >
-                <div className="w-full px-2.5 bg-black dark:bg-white text-white dark:text-black rounded-[5px]">
-                    <Text
-                        text="About Me"
-                        size="xl"
-                        className="tracking-tighter"
-                    />
-                </div>
-
-                <div className="my-10 w-full grid grid-rows-[auto_1fr] gap-5">
-                    <div className="flex flex-col items-start gap-10">
-                        <div
-                            ref={descriptionRef}
-                            className={clsx(
-                                'flex items-center gap-5 transition-all duration-700 ease-out',
-                                isVisible.description
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-10',
-                            )}
-                        >
-                            <Highlighter action="highlight" color={
-                                isDarkMode
-                                    ? '#00000033'
-                                    : '#FFFFFF33'
-                            }>
-                                <Text
-                                    text="Description"
-                                    size="lg"
-                                    className="min-w-[150px]"
-                                />
-                            </Highlighter>
-
-                            <Text
-                                text="I'm 22 years old, located on the Gold Coast,
-                                Australia. I am passionate about technology and
-                                passionate about developing applications."
-                            />
-                        </div>
-
-                        <div
-                            ref={educationRef}
-                            className={clsx(
-                                'flex items-center gap-5 transition-all duration-700 ease-out delay-150',
-                                isVisible.education
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-10',
-                            )}
-                        >
-                            <Highlighter action="highlight" color={
-                                isDarkMode
-                                    ? '#00000033'
-                                    : '#FFFFFF33'
-                            }>
-                                <Text
-                                    text="Education"
-                                    size="lg"
-                                    className="min-w-[150px]"
-                                />
-                            </Highlighter>
-
-                            <Text
-                                text="A 3rd year student at Southern Cross University,
-                                studying a Bachelor of Information Technology,
-                                Majoring in Software Development."
-                            />
-                        </div>
-
-                        <div
-                            ref={hobbiesRef}
-                            className={clsx(
-                                'flex items-center gap-5 transition-all duration-700 ease-out delay-300',
-                                isVisible.hobbies
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-10',
-                            )}
-                        >
-                            <Highlighter action='highlight' color={
-                                isDarkMode
-                                    ? '#00000033'
-                                    : '#FFFFFF33'
-                            }>
-                            <Text
-                                text="Hobbies"
-                                size="lg"
-                                className="min-w-[150px]"
-                            />
-                            </Highlighter>
-
-                            <Text
-                                text="In my spare time, I like to keep active and get
-                                out. I mountain bike ride, hit the gym, and
-                                travel."
-                            />
                         </div>
                     </div>
-                </div>
-            </div>
+                </section>
+            </main>
 
-            <div
-                ref={experienceRef}
-                className="w-full flex flex-col gap-10"
-            >
-                <div className="w-full px-2.5 bg-black dark:bg-white text-white dark:text-black rounded-[5px]">
-                    <Text
-                        text="Experience"
-                        size="xl"
-                        className="tracking-tighter"
-                    />
-                </div>
-
-                <div className="my-10 w-full grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4">
-                    <Card className="w-full p-[20px] flex flex-col gap-5 border border-black dark:border-white rounded-[10px] hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-400 ease-out">
-                        <div className="flex flex-col items-start">
-                            <Text
-                                text="Role:"
-                                className="text-[20px] tracking-tight"
-                            />
-
-                            <Text
-                                text="YourKind"
-                                className="text-[30px] tracking-tight"
-                            />
-                        </div>
-
-                        <div>
-                            <Text
-                                text="YTD:"
-                                className="text-[15px] tracking-tight"
-                            />
-
-                            <Text
-                                text="2025 - Current"
-                                className="text-[20px] tracking-tight"
-                            />
-                        </div>
-                    </Card>
-
-                    <Card className="w-full p-[20px] bg-black dark:bg-white rounded-[10px] flex flex-col">
-                        <Text
-                            text="Responsibilities"
-                            className="tracking-tight text-white dark:text-black text-[20px]"
-                        />
-
-                        <ul className="px-[20px] mt-4 flex flex-col gap-3">
-                            <li className="list-disc text-white dark:text-black">
-                                <Text
-                                    text="Create and maintain front end pages."
-                                    className="text-white dark:text-black"
-                                />
-                            </li>
-                            <li className="list-disc text-white dark:text-black">
-                                <Text
-                                    text="Assist with feature development."
-                                    className="text-white dark:text-black"
-                                />
-                            </li>
-                            <li className="list-disc text-white dark:text-black">
-                                <Text
-                                    text="Contribute to team discussions and provide insight into potential feature characteristics."
-                                    className="text-white dark:text-black"
-                                />
-                            </li>
-                        </ul>
-                    </Card>
-                </div>
-            </div>
+            {/* Bottom radial glow */}
+            <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.17)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3)_0%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.07)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.07)_0%,transparent_50%)]" />
         </div>
     );
 }

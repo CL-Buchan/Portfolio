@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { TextProps } from '@/helpers/types';
+import { TextProps } from '@/app/types/types';
 
 export default function Text({ text, size, className }: TextProps) {
     const getFontSize = () => {
