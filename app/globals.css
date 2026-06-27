@@ -119,9 +119,6 @@
     * {
         @apply border-border outline-ring/50;
     }
-    body {
-        @apply bg-background text-foreground;
-    }
 }
 
 *::-webkit-scrollbar {
@@ -129,8 +126,20 @@
 }
 
 html {
+    min-height: -webkit-fill-available;
+}
+
+body {
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
     background-color: var(--background);
-    height: 100dvh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.gradient {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 @media (prefers-color-scheme: dark) {

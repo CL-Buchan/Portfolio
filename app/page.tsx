@@ -98,7 +98,7 @@ export default function Home() {
     return (
         <div className="relative isolate min-h-dvh">
             {/* Bottom radial glow */}
-            <div className="fixed inset-0 -z-10 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.17)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3)_0%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.07)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.07)_0%,transparent_50%)]" />
+            {/* <div className="fixed inset-0 -z-10 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.17)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(0,0,0,0.3)_0%,transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.07)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.07)_0%,transparent_50%)]" /> */}
 
             {/* Content */}
             <main className="relative px-12.5 md:px-62.5 md:py-16">

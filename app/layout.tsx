@@ -21,8 +21,9 @@ export const viewport: Viewport = {
     width: 'device-width',
     initialScale: 1,
     viewportFit: 'cover',
+    themeColor: '#1a1a1f',
+    colorScheme: 'light dark',
 };
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -31,7 +32,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth min-h-dvh bg-background`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth min-h-dvh text-foreground`}
             >
                 {children}
             </body>
